@@ -1,0 +1,185 @@
+/* osnovni reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f6fa;
+  color: #222;
+}
+
+/* glavni wrapper */
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2f3640;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.navbar h2 {
+  margin: 0;
+}
+
+/* navigacija */
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* email uporabnika */
+.user-email {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* logout gumb */
+.logout-btn {
+  padding: 8px 12px;
+  border: none;
+  background-color: #e84118;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #c23616;
+}
+
+/* kartica */
+.card {
+  background-color: white;
+  padding: 22px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* naslovi */
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+/* form */
+form {
+  background-color: white;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* form groups */
+.form-group {
+  margin-bottom: 14px;
+}
+
+/* label */
+label {
+  font-weight: bold;
+}
+
+/* input */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* gumbi */
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #273c75;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #192a56;
+}
+
+/* pomožni gumb */
+.secondary-btn {
+  background-color: #718093;
+  margin-left: 10px;
+}
+
+.secondary-btn:hover {
+  background-color: #57606f;
+}
+
+/* link v vsebini */
+.content-link {
+  color: #273c75;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.content-link:hover {
+  text-decoration: underline;
+}
+
+/* radio možnosti */
+.option-row {
+  margin-bottom: 10px;
+}
+
+/* sporočila */
+.message {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* seznam rezultatov */
+.results-list {
+  padding-left: 20px;
+}
+
+/* responsive */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+}
+
+.section-title {
+  color: #273c75;
+  
+  font-size: 48px;
+  margin-bottom: 20px;
+  border-bottom: 10px solid #273c75;
+  padding-bottom: 20px;
+}
