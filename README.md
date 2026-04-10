@@ -69,7 +69,14 @@ Po kloniranju odpri projekt v Visual Studio Code.
 
 ## 🗄️ Nastavitev baze podatkov
 
-Aplikacija uporablja PostgreSQL.
+### Povezava na bazo
+
+Aplikacija se poveže na PostgreSQL bazo z uporabo zgornjih spremenljivk.
+
+Prepričaj se, da:
+- PostgreSQL strežnik deluje
+- baza `ankete_app` obstaja
+- uporabnik ima dostop do baze
 
 ### 1. Ustvari bazo
 
@@ -105,11 +112,16 @@ npm install
 
 V mapi `backend` ustvari datoteko `.env`:
 
-```env
+```env naj izgledda nekako tako
 PORT=5000
-DATABASE_URL=postgresql://user:password@localhost:5432/ankete
-JWT_SECRET=nek_tajni_kljuc
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD= postgres
+DB_NAME=ankete_app
+JWT_SECRET=secret123
 ```
+Opomba: prilagodi vrednosti glede na svojo PostgreSQL konfiguracijo.
 
 ### Zagon backenda
 
