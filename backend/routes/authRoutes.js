@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../db');
+const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 //register route
@@ -88,6 +89,48 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.error('Napaka pri prijavi:', error);
     res.status(500).json({ error: 'Napaka na strežniku.' });
+  }
+});
+
+const upload = require('../middleware/upload');
+
+// upload avatarja
+router.post('/upload-avatar', authMiddleware, upload.single('avatar'), async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const filePath = req.file.filename;
+
+    await pool.query(
+      'UPDATE users SET avatar = $1 WHERE id = $2',
+      [filePath, userId]
+    );
+
+    res.json({
+      message: 'Avatar uspešno naložen',
+      avatar: filePath,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Napaka pri uploadu' });
+  }
+});
+
+// vrne podatke prijavljenega uporabnika
+router.get('/me', authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const result = await pool.query(
+      'SELECT id, email, avatar FROM users WHERE id = $1',
+      [userId]
+    );
+
+    res.json(result.rows[0]);
+
+  } catch (err) {
+    res.status(500).json({ error: 'Napaka pri pridobivanju uporabnika' });
   }
 });
 

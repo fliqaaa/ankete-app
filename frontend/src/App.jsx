@@ -1,5 +1,5 @@
 // uvoz React Router komponent
-import { BrowserRouter, Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 
 // uvoz strani
 import Domov from './pages/Domov';
@@ -8,10 +8,16 @@ import Registracija from './pages/Registracija';
 import UstvariAnketo from './pages/UstvariAnketo';
 import AnketaPodrobnosti from './pages/AnketaPodrobnosti';
 
+// uvoz Navbar komponente (z avatarjem)
+import Navbar from "./components/Navbar";
+
 // uvoz CSS
 import './App.css';
 
-// zaščitena pot - če ni tokena, uporabnika preusmeri na prijavo
+
+//  ZAŠČITENA POT
+// preveri ali ima uporabnik token
+// če ga nima ga preusmeri na prijavo
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('token');
 
@@ -22,53 +28,39 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
-// glavna vsebina aplikacije
+
+//  GLAVNA LOGIKA APLIKACIJE
 function AppContent() {
   const navigate = useNavigate();
 
-  // podatki prijavljenega uporabnika
+  // preverimo če je uporabnik prijavljen
   const token = localStorage.getItem('token');
-  const userEmail = localStorage.getItem('userEmail');
-
-  // odjava
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userEmail');
-    navigate('/prijava');
-  };
 
   return (
     <div className="app">
-      {/* navbar pokažemo samo prijavljenemu uporabniku */}
-      {token && (
-        <nav className="navbar">
-          <h2>Ankete App</h2>
 
-          <div className="nav-links">
-            <Link to="/domov">Domov</Link>
-            <Link to="/ustvari">Nova anketa</Link>
-            <span className="user-email">{userEmail}</span>
-            <button className="logout-btn" onClick={handleLogout}>
-              Odjava
-            </button>
-          </div>
-        </nav>
-      )}
+      {/*  NAVBAR (prikazan samo prijavljenemu uporabniku) */}
+      {token && <Navbar />}
 
       <Routes>
-        {/* začetna pot */}
+
+        {/*  ZAČETNA POT */}
         <Route
           path="/"
           element={
-            token ? <Navigate to="/domov" replace /> : <Navigate to="/prijava" replace />
+            token 
+              ? <Navigate to="/domov" replace /> 
+              : <Navigate to="/prijava" replace />
           }
         />
 
-        {/* javne strani */}
+        {/*  JAVNE STRANI */}
         <Route path="/prijava" element={<Prijava />} />
         <Route path="/registracija" element={<Registracija />} />
 
-        {/* zaščitene strani */}
+        {/*  ZAŠČITENE STRANI */}
+
+        {/* DOMOV */}
         <Route
           path="/domov"
           element={
@@ -78,6 +70,7 @@ function AppContent() {
           }
         />
 
+        {/* USTVARI ANKETO */}
         <Route
           path="/ustvari"
           element={
@@ -87,6 +80,7 @@ function AppContent() {
           }
         />
 
+        {/* PODROBNOSTI ANKETE */}
         <Route
           path="/anketa/:id"
           element={
@@ -95,11 +89,14 @@ function AppContent() {
             </ProtectedRoute>
           }
         />
+
       </Routes>
     </div>
   );
 }
 
+
+// root komponenta
 function App() {
   return (
     <BrowserRouter>

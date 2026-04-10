@@ -9,6 +9,10 @@ function Domov() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  // stanje za upload avatarja
+  const [file, setFile] = useState(null);
+  const [message, setMessage] = useState('');
+
   // ob nalaganju strani pridobimo vse ankete
   useEffect(() => {
     const fetchPolls = async () => {
@@ -32,6 +36,46 @@ function Domov() {
     fetchPolls();
   }, []);
 
+  // upload avatarja
+  const handleUpload = async () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      setMessage('Moraš biti prijavljen.');
+      return;
+    }
+
+    if (!file) {
+      setMessage('Izberi datoteko.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/upload-avatar', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMessage('Avatar uspešno naložen!');
+        window.location.reload();
+      } else {
+        setMessage(data.error || 'Napaka pri uploadu.');
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage('Napaka pri uploadu.');
+    }
+  };
+
   if (loading) {
     return <p>Nalaganje anket...</p>;
   }
@@ -42,7 +86,9 @@ function Domov() {
 
   return (
     <div>
-      <h1 className="section-title">SEZNAM ANKET</h1>
+      <h1 className="section-title">Seznam anket</h1>
+
+      
 
       {polls.length === 0 ? (
         <div className="card">

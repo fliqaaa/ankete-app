@@ -5,9 +5,9 @@ const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
 
-// =====================
+// 
 // CREATE POLL
-// =====================
+// 
 router.post('/', authMiddleware, async (req, res) => {
   try {
     const { title, options, start_time, end_time } = req.body;
@@ -52,9 +52,9 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
-// =====================
+// 
 // VOTE ON POLL
-// =====================
+// 
 router.post('/:pollId/vote', authMiddleware, async (req, res) => {
   try {
     // pollId dobimo iz URL-ja
@@ -137,9 +137,9 @@ router.post('/:pollId/vote', authMiddleware, async (req, res) => {
 });
 
 
-// =====================
+//
 // GET ALL POLLS
-// =====================
+//
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query(`
@@ -157,9 +157,9 @@ router.get('/', async (req, res) => {
 });
 
 
-// =====================
+// 
 // GET SINGLE POLL + OPTIONS
-// =====================
+// 
 router.get('/:pollId', async (req, res) => {
   try {
     // pollId dobimo iz URL-ja
@@ -200,9 +200,9 @@ router.get('/:pollId', async (req, res) => {
   }
 });
 
-// =====================
+// 
 // GET POLL RESULTS
-// =====================
+// 
 router.get('/:pollId/results', async (req, res) => {
   try {
     // pollId dobimo iz URL-ja
