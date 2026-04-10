@@ -81,7 +81,7 @@ Prepričaj se, da:
 ### 1. Ustvari bazo
 
 ```sql
-CREATE DATABASE ankete;
+CREATE DATABASE ankete_app;
 ```
 
 ### 2. Ustvari tabele

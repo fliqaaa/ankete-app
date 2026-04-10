@@ -4,7 +4,8 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password TEXT NOT NULL,
-    avatar VARCHAR(255)
+    avatar VARCHAR(255),
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
 -- tabela anket
