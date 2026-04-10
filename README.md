@@ -1,2 +1,213 @@
-# ankete-app
-Aplikacija AnketeApp, ki omogoča uporabnikom glasovanje na ankete in ustvarjanje novih anket.
+# Ankete App
+
+Spletna aplikacija za ustvarjanje in reševanje anket.
+
+---
+
+## Opis projekta
+
+Aplikacija omogoča uporabnikom:
+
+* registracijo in prijavo
+* ustvarjanje anket
+* glasovanje v anketah
+* ogled rezultatov
+* nalaganje profilne slike (avatar)
+
+Sistem vključuje:
+
+* preprečevanje večkratnega glasovanja istega uporabnika
+* časovno omejitev anket (glasovanje je možno samo v določenem časovnem obdobju)
+
+---
+
+## Tehnologije
+
+### Frontend
+
+* React (Vite)
+* React Router
+
+### Backend
+
+* Node.js
+* Express
+
+### Baza podatkov
+
+* PostgreSQL
+
+### Ostalo
+
+* JWT (avtentikacija in avtorizacija)
+* Multer (nalaganje datotek)
+
+---
+
+## Namestitev in zagon
+
+### 1. Kloniranje repozitorija
+
+```bash
+git clone https://github.com/fliqaaa/ankete-app.git
+cd ankete-app
+```
+
+---
+### Alternativa: GitHub Desktop
+
+Če uporabljaš GitHub Desktop:
+
+1. Odpri GitHub Desktop
+2. Klikni **File → Clone repository**
+3. Izberi repozitorij ali prilepi URL:
+   https://github.com/fliqaaa/ankete-app.git
+4. Izberi lokacijo na računalniku
+5. Klikni **Clone**
+
+Po kloniranju odpri projekt v Visual Studio Code.
+
+## 🗄️ Nastavitev baze podatkov
+
+Aplikacija uporablja PostgreSQL.
+
+### 1. Ustvari bazo
+
+```sql
+CREATE DATABASE ankete;
+```
+
+### 2. Ustvari tabele
+
+Zaženi SQL skripto:
+
+```text
+backend/database.sql
+```
+
+Ta skripta ustvari vse potrebne tabele:
+
+* users
+* polls
+* options
+* votes
+
+---
+
+## ⚙️ Backend
+
+```bash
+cd backend
+npm install
+```
+
+### Ustvari `.env` datoteko
+
+V mapi `backend` ustvari datoteko `.env`:
+
+```env
+PORT=5000
+DATABASE_URL=postgresql://user:password@localhost:5432/ankete
+JWT_SECRET=nek_tajni_kljuc
+```
+
+### Zagon backenda
+
+```bash
+npm run dev
+```
+
+Backend teče na:
+
+```
+http://localhost:5000
+```
+
+---
+
+## 💻 Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend teče na:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Funkcionalnosti
+
+* Registracija in prijava uporabnika
+* JWT avtentikacija
+* Zaščitene poti (Protected routes)
+* Ustvarjanje anket
+* Glasovanje (1 glas na uporabnika)
+* Preprečevanje večkratnega glasovanja
+* Časovno omejene ankete
+* Prikaz rezultatov
+* Nalaganje profilne slike (avatar)
+* Spreminjanje avatarja s klikom na profilno sliko
+
+---
+
+## Struktura projekta
+
+```
+ankete-app/
+│
+├── backend/
+│   ├── routes/
+│   ├── middleware/
+│   ├── uploads/
+│   ├── database.sql
+│   ├── db.js
+│   └── index.js
+│
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   └── App.jsx
+│
+└── README.md
+```
+
+---
+
+## Varnost
+
+* JWT avtentikacija
+* Zaščiteni API endpointi
+* Validacija vhodnih podatkov na backendu
+* Preprečeno večkratno glasovanje istega uporabnika
+
+---
+
+## Opombe
+
+* `.env` datoteka ni vključena v repozitorij
+* `node_modules` ni vključen (uporabi `npm install`)
+* aplikacija deluje lokalno (localhost)
+
+---
+
+## Testni uporabnik (opcijsko)
+
+Lahko ustvariš svoj račun ali uporabiš:
+
+```
+Email: test@test.com
+Geslo: test123
+```
+
+---
+
+## Avtor
+
+Ime in priimek: Gal Bekavac
