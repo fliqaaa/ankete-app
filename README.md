@@ -99,6 +99,28 @@ Ta skripta ustvari vse potrebne tabele:
 * options
 * votes
 
+
+## Tesstni podatki(opcionalno)
+
+INSERT INTO users (email, password)
+VALUES ('test@test.com', 'hashed_password');
+
+INSERT INTO polls (title, start_time, end_time, user_id)
+VALUES (
+    'Kateri je najboljši programski jezik?',
+    '2026-04-07 08:00:00',
+    '2026-04-10 20:00:00',
+    1
+);
+
+INSERT INTO options (text, poll_id)
+VALUES
+('JavaScript', 1),
+('Python', 1),
+('Java', 1);
+
+INSERT INTO votes (user_id, poll_id, option_id)
+VALUES (1, 1, 2);
 ---
 
 ## ⚙️ Backend
