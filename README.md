@@ -187,10 +187,12 @@ http://localhost:5173
 * Prikaz rezultatov
 * Nalaganje profilne slike (avatar)
 * Spreminjanje avatarja s klikom na profilno sliko
-
+## Za delovanje nalaganja avatarja, je potrebno ustvariti folder uploads v backendu.
 ---
 
 ## Struktura projekta
+
+
 
 ```
 ankete-app/
@@ -198,7 +200,7 @@ ankete-app/
 ├── backend/
 │   ├── routes/
 │   ├── middleware/
-│   ├── uploads/
+│   ├── uploads/ 
 │   ├── database.sql
 │   ├── db.js
 │   └── index.js
